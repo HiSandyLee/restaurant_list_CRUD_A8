@@ -10,7 +10,14 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index')
+  const restaurantOne = {
+    id: 1,
+    image: 'https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg',
+    title: 'Sababa 沙巴巴中東美食',
+    type: '中東料理',
+    evaluation: 4.1
+  }
+  res.render('index', { restaurant: restaurantOne })
 })
 
 
