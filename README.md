@@ -11,21 +11,25 @@
 * 4.Express-Handlebars 
 
 ## 安裝與執行步驟
-1.打開終端機，進入此專案的資料夾中
+1. 打開終端機，進入此專案的資料夾中
 ```
 cd restaurant_list
 ```
-2.透過 npm 安裝 Express
+2. 透過 npm 安裝 Express
 ```
 npm install express 
 ```
-3.安裝 
+3. 安裝 
 ```
 npm install -g nodemon
 ```
-4.使用 nodemon 啟動 Express 的專案
+4. 使用 nodemon 啟動 Express 的專案
 ```
 nodemon app.js
+```
+5. 若終端機跳出以下網址代表成功
+```
+http://localhost:3000.
 ```
 
 
