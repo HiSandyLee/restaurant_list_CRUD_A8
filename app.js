@@ -86,6 +86,15 @@ app.post('/restaurants', (req, res) => {
 
 })
 
+//詳細畫面路由
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
+})
+
 app.listen(port, () => {
   console.log(`Express is listening on http://localhost:${port}`)
 })
