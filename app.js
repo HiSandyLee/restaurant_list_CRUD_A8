@@ -1,9 +1,12 @@
 const express = require('express')
 const app = express()
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const mongoose = require('mongoose') // 載入 mongoose
 const restaurantList = require('./restaurant.json')
 const port = 3000
+const restaurant = require('./models/restaurant')
+const Restaurant = require('./models/restaurant')
 
 mongoose.connect('mongodb://localhost/restaurant-list', {
   useNewUrlParser: true,
@@ -24,12 +27,16 @@ db.once('open', () => {
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // setting static files
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()// 取出 Restaurant model 裡的所有資料
+    .lean() //把 Mongoose 的 Model 物件轉換成乾淨的JS資料陣列
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error)) //若發生意外執行錯誤處理
 })
 
 app.get('/search', (req, res) => {
@@ -46,6 +53,38 @@ app.get('/restaurant/:restaurant_id', (req, res) => {
   res.render('show', { restaurant })
 })
 
+//new路由
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const {
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  } = req.body
+  return Restaurant.create({
+    name,
+    name_en,
+    category,
+    image,
+    location,
+    phone,
+    google_map,
+    rating,
+    description,
+  })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
+})
 
 app.listen(port, () => {
   console.log(`Express is listening on http://localhost:${port}`)
