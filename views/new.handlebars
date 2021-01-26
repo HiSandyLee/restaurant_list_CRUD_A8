@@ -1,115 +1,112 @@
 <div class="banner"></div>
 <form action="/restaurants" method="POST">
 
-  <div class="container mt-5">
+  <div class="container mt-5 d-flex justify-content-center ">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header mb-1">
+        新增餐廳
+      </div>
+      <div class="card-body px-1 ">
+        <table summary="新增餐廳">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tbody>
+            <tr>
+              <td>餐廳名稱</td>
+              <td class="add restaurant">
+                <input type="text" placeholder="請輸入名稱" name="name">
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>餐廳名稱</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="name" name="name">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <table summary="新增餐廳">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tbody>
+            <tr>
+              <td>餐廳英文</td>
+              <td class="add restaurant">
+                <input type="text" placeholder="請輸入名稱" name="name_en">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table summary="新增餐廳">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tbody>
+            <tr>
+              <td>餐廳總類</td>
+              <td class="add restaurant">
+                <input type="text" placeholder="請輸入種類" name="category">
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>餐廳英文</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="name_en" name="name_en">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <table summary="新增餐廳">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tbody>
+            <tr>
+              <td>餐廳圖片</td>
+              <td class="add restaurant">
+                <input type="text" placeholder="請新增圖片" name="image">
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>餐廳總類</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="category" name="category">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <table summary="新增餐廳">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tbody>
+            <tr>
+              <td>餐廳位置</td>
+              <td class="add restaurant">
+                <input type="text" placeholder="請輸入地址" name="location">
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>餐廳圖片</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="image" name="image">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        </table>
+        <table summary="新增餐廳">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tbody>
+            <tr>
+              <td>餐廳評價</td>
+              <td class="add restaurant">
+                <input type="text" placeholder="請輸入評價" name="rating">
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>餐廳位置</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="location" name="location">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <table summary="新增餐廳">
+          <colgroup width="30%"></colgroup>
+          <colgroup width="70%"></colgroup>
+          <tbody>
+            <tr>
+              <td>餐廳描述</td>
+              <td class="add restaurant">
+                <input type="text" placeholder="請新增描述" name="description">
+              </td>
+            </tr>
+          </tbody>
 
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>google地圖</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="google_map" name="google_map">
-          </td>
-        </tr>
-      </tbody>
+        </table>
 
-    </table>
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>餐廳評價</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="rating" name="rating">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      </div>
 
-    <table summary="新增餐廳">
-      <colgroup width="30%"></colgroup>
-      <colgroup width="70%"></colgroup>
-      <tbody>
-        <tr>
-          <td>餐廳描述</td>
-          <td class="add restaurant">
-            <input type="text" placeholder="description" name="description">
-          </td>
-        </tr>
-      </tbody>
-    </table>
 
+
+
+
+    </div>
   </div>
-
-
 
   <div class="d-flex justify-content-center mt-3">
     <button type="submit">Create</button>
