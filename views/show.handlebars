@@ -40,5 +40,10 @@
         style="max-width: 600px;">
     </div>
   </div>
-  <a href="/">back</a>
+  <div class="d-flex justify-content-center mt-3 mb-2">
+    <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display:inline;">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="/" class="btn btn-info">Back</a>
+  </div>
 </div>
