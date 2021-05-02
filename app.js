@@ -1,12 +1,14 @@
+// require packages used in the project
 const express = require('express')
-const app = express()
+// require handlebars in the project
 const exphbs = require('express-handlebars')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose') // 載入 mongoose
 const restaurantList = require('./restaurant.json')
-const port = 3000
-const restaurant = require('./models/restaurant')
+const mongoose = require('mongoose') // 載入 mongoose
 const Restaurant = require('./models/restaurant')
+const bodyParser = require('body-parser')
+const app = express()
+const port = 3000
+
 
 mongoose.connect('mongodb://localhost/restaurant-list', {
   useNewUrlParser: true,
@@ -32,6 +34,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // setting static files
 app.use(express.static('public'))
 
+// routes setting
+//home page
 app.get('/', (req, res) => {
   Restaurant.find()// 取出 Restaurant model 裡的所有資料
     .lean() //把 Mongoose 的 Model 物件轉換成乾淨的JS資料陣列
@@ -39,21 +43,31 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error)) //若發生意外執行錯誤處理
 })
 
+//search bar
+// app.get('/search', (req, res) => {
+//   const keyword = req.query.keyword.trim()
+//   const restaurants = restaurantList.results.filter(restaurant => {
+//     return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase())
+//   })
+
+//   res.render('index', { restaurants, keyword })
+// })
+
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-  })
-
-  res.render('index', { restaurants, keyword, })
+  const keyword = req.query.keyword.trim()
+  return Restaurant.find()
+    .lean()
+    .then(restaurants => {
+      const restaurantList = restaurants.filter((search) => {
+        return search.name.toLowerCase().includes(keyword) ||
+          search.category.toLowerCase().includes(keyword)
+      })
+      res.render('index', { restaurants: restaurantList, keyword })
+    })
+    .catch(error => { console.log(error) })
 })
 
-app.get('/restaurant/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant })
-})
-
-//new路由
+//new
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
@@ -86,7 +100,7 @@ app.post('/restaurants', (req, res) => {
 
 })
 
-//詳細畫面路由
+//show page
 app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -95,7 +109,7 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//修改資料路由
+//edit
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -106,25 +120,24 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  const editData = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
-      restaurant.name = editData.name
-      restaurant.name_en = editData.name_en
-      restaurant.category = editData.category
-      restaurant.image = editData.image
-      restaurant.location = editData.location
-      restaurant.phone = editData.phone
-      restaurant.google_map = editData.google_map
-      restaurant.rating = editData.rating
-      restaurant.description = editData.description
+      restaurant.name = req.body.name
+      restaurant.name_en = req.body.name_en
+      restaurant.category = req.body.category
+      restaurant.image = req.body.image
+      restaurant.location = req.body.location
+      restaurant.phone = req.body.phone
+      restaurant.google_map = req.body.google_map
+      restaurant.rating = req.body.rating
+      restaurant.description = req.body.description
       return restaurant.save()
     })
-    .then(() => res.redirect('/restaurants/${id}'))
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 
-//刪除路由
+//delete
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
