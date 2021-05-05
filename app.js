@@ -6,6 +6,7 @@ const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose') // 載入 mongoose
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')// 載入 method-override
 const app = express()
 const port = 3000
 
@@ -33,6 +34,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // setting static files
 app.use(express.static('public'))
+
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+app.use(methodOverride('_method'))
 
 // routes setting
 //home page
@@ -118,7 +122,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => {
@@ -138,7 +142,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 //delete
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
