@@ -1,7 +1,7 @@
 # 我的餐廳清單
 
 # 專案畫面
-![image](https://github.com/HiSandyLee/restaurant_list_CRUD/blob/master/%E9%A4%90%E5%BB%B3%E6%B8%85%E5%96%AE.JPG)
+![image](https://github.com/HiSandyLee/restaurant_list_CRUD_A8)
 
 
 ## 環境建置與需求
