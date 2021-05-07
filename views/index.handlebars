@@ -1,20 +1,33 @@
-<!-- search bar -->
-<div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="{{ keyword }}" aria-describedby="search-button">
+<div class="container mt-3">
+  <div class="row">
+    <!-- search bar -->
+    <div class="row col-md-10 col-12 mx-auto justify-content-between">
+      <form action=" /search">
+        <div class="input-group" style="width: 50vw;">
+          <input type="text" name="keyword" class="form-control col-3" placeholder="輸入餐廳、分類"
+            aria-label="Restaurant Name..." value="{{ keyword }}" aria-describedby="search-button">
           <div class="input-group-append">
             <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </form>
+      {{!-- 序列sort --}}
+      <div class="dropdown text-right">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          餐廳排序
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <a class="dropdown-item" href="/?sort=a" value="name">新增順序(新->舊)</a>
+          <a class="dropdown-item" href="/?sort=z" value="name">新增順序(舊->新)</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
+
+
 
 <!-- restaurant list -->
 <div class="container mt-5 ">
@@ -46,14 +59,10 @@
                   <button type="submit" class="btn"><i class="fas fa-lg fa-trash-alt"></i></button>
                 </form>
               </div>
-
-
             </div>
-
           </div>
         </a>
         {{/each}}
       </div>
     </div>
   </div>
-</div>
